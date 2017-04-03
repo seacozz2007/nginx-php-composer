@@ -125,8 +125,10 @@ RUN set -x && \
     mv composer.phar /usr/local/bin/composer  && \
     cd /usr/local/bin && \
     chmod a+x composer && \
-    
 
+#install npm
+    curl -sL -o /etc/yum.repos.d/khara-nodejs.repo https://copr.fedoraproject.org/coprs/khara/nodejs/repo/epel-7/khara-nodejs-epel-7.repo && \
+    yum install -y nodejs nodejs-npm && \
 #Clean OS
     yum remove -y gcc \
     gcc-c++ \
