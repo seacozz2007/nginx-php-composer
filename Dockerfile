@@ -129,6 +129,8 @@ RUN set -x && \
 #install npm
     curl -sL -o /etc/yum.repos.d/khara-nodejs.repo https://copr.fedoraproject.org/coprs/khara/nodejs/repo/epel-7/khara-nodejs-epel-7.repo && \
     yum install -y nodejs nodejs-npm && \
+    npm install antd --save && \
+    
 #Clean OS
     yum remove -y gcc \
     gcc-c++ \
