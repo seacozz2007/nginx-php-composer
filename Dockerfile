@@ -38,11 +38,11 @@ RUN set -x && \
 
 #Download nginx & php
     mkdir -p /home/nginx-php && cd $_ && \
-    curl -Lk http://nginx.org/download/nginx-$NGINX_VERSION.tar.gz | gunzip | tar x -C /home/nginx-php && \
-    curl -Lk http://php.net/distributions/php-$PHP_VERSION.tar.gz | gunzip | tar x -C /home/nginx-php && \
+    curl -Lk http://develdownload.famesmart.com/nginx-1.11.6.tar.gz | gunzip | tar x -C /home/nginx-php && \
+    curl -Lk http://develdownload.famesmart.com/php-7.1.0.tar.gz | gunzip | tar x -C /home/nginx-php && \
 
 #Make install nginx
-    cd /home/nginx-php/nginx-$NGINX_VERSION && \
+    cd /home/nginx-php/nginx-1.11.6 && \
     ./configure --prefix=/usr/local/nginx \
     --user=www --group=www \
     --error-log-path=/var/log/nginx_error.log \
@@ -56,7 +56,7 @@ RUN set -x && \
     make && make install && \
 
 #Make install php
-    cd /home/nginx-php/php-$PHP_VERSION && \
+    cd /home/nginx-php/php-7.1.0 && \
     ./configure --prefix=/usr/local/php \
     --with-config-file-path=/usr/local/php/etc \
     --with-config-file-scan-dir=/usr/local/php/etc/php.d \
@@ -102,7 +102,7 @@ RUN set -x && \
     make && make install && \
 
 #Install php-fpm
-    cd /home/nginx-php/php-$PHP_VERSION && \
+    cd /home/nginx-php/php-7.1.0 && \
     cp php.ini-production /usr/local/php/etc/php.ini && \
     cp /usr/local/php/etc/php-fpm.conf.default /usr/local/php/etc/php-fpm.conf && \
     cp /usr/local/php/etc/php-fpm.d/www.conf.default /usr/local/php/etc/php-fpm.d/www.conf && \
@@ -117,8 +117,7 @@ RUN set -x && \
     cd /usr/local && \
     mkdir composer && \
     cd composer && \
-    php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');" && \
-    php -r "if (hash_file('SHA384', 'composer-setup.php') === '669656bab3166a7aff8a7506b8cb2d1c292f042046c5a994c43155c0be6190fa0355160742ab2e1c88d40d5be660b410') { echo 'Installer verified'; } else { echo 'Installer corrupt'; unlink('composer-setup.php'); } echo PHP_EOL;" && \
+    php -r "copy('http://develdownload.famesmart.com/installer', 'composer-setup.php');" && \
     chmod +x composer-setup.php && \
     php composer-setup.php && \
     php -r "unlink('composer-setup.php');" && \
@@ -131,12 +130,9 @@ RUN set -x && \
     yum install -y nodejs nodejs-npm && \
     # npm install antd --save && \
 
-
 #install yum tools
-
 mkdir /fame && \
 cd /fame && \
-
 
 yum install epel-release -y && \
 
@@ -149,12 +145,11 @@ yum groupinstall "Development Tools" -y && \
 
 #install ffmpeg
 
-
 yum install libass-devel faac-devel fdk-acc-devel gsm-devel openjpeg-devel openjpeg2-devel opus-devel libpulseaudio-devel soxr-devel speex-devel x264-devel x265-devel  libtheora-devel  libvorbis-devel  xvidcore-devel fdk-aac-devel opencore-amr-devel -y && \
 yum install zlib-devel bzip2-devel openssl-devel ncurses-devel sqlite-devel readline-devel tk-devel gdbm-devel db4-devel libpcap-devel xz-devel -y && \
 
 cd /fame && \
-wget http://www.tortall.net/projects/yasm/releases/yasm-1.3.0.tar.gz && \
+wget http://develdownload.famesmart.com/yasm-1.3.0.tar.gz && \
 tar xvf yasm-1.3.0.tar.gz && \
 cd yasm-1.3.0 && \
 ./configure && \
@@ -163,7 +158,7 @@ make install && \
 
 
 cd /fame && \
-wget http://jaist.dl.sourceforge.net/project/lame/lame/3.99/lame-3.99.5.tar.gz   && \
+wget http://develdownload.famesmart.com/lame-3.99.5.tar.gz   && \
 tar xvf lame-3.99.5.tar.gz && \
 cd lame-3.99.5 && \
 ./configure && \
@@ -172,7 +167,7 @@ make install && \
 
 
 cd /fame && \
-wget http://www.loongnix.org/cgit/libvpx/snapshot/libvpx-1.7.0.tar.gz && \
+wget http://develdownload.famesmart.com/libvpx-1.7.0.tar.gz && \
 tar -zxvf libvpx-1.7.0.tar.gz && \
 cd libvpx-1.7.0 && \
 ./configure --enable-shared --as=yasm --prefix=/usr && \
@@ -181,7 +176,7 @@ make install && \
 
 
 cd /fame && \
-wget http://ffmpeg.org/releases/ffmpeg-4.0.tar.gz && \
+wget http://develdownload.famesmart.com/ffmpeg-4.0.tar.gz && \
 tar -zxvf ffmpeg-4.0.tar.gz && \
 cd ffmpeg-4.0 && \
 
@@ -195,7 +190,7 @@ ldconfig && \
 
 
 cd /fame && \
-wget https://www.python.org/ftp/python/3.6.2/Python-3.6.2.tar.xz && \
+wget http://develdownload.famesmart.com/Python-3.6.2.tar.xz && \
 
 mkdir /usr/local/python3  && \
 tar -xvJf  Python-3.6.2.tar.xz && \
@@ -217,11 +212,11 @@ yum install libpng-devel libjpeg-turbo-devel jasper-devel openexr-devel libtiff-
 
 yum install cmake -y && \
 
-wget https://github.com/opencv/opencv/archive/3.1.0.zip && \
+wget http://develdownload.famesmart.com/3.1.0.zip && \
 
  unzip 3.1.0.zip && \
 cd opencv-3.1.0/ && \
-wget http://www.famesmart.com/upload/ippicv_linux_20151201.tgz && \
+wget http://develdownload.famesmart.com/ippicv_linux_20151201.tgz && \
 cp ippicv_linux_20151201.tgz 3rdparty/ippicv/downloads/linux-808b791a6eac9ed78d32a7666804320e/ && \
 mkdir build && \
 cd build && \
@@ -247,7 +242,7 @@ echo "extension=memcached.so">> /usr/local/php/etc/php.ini && \
 
 #thrift
 cd /fame && \
-wget http://ftp.gnu.org/gnu/bison/bison-2.5.1.tar.gz && \
+wget http://develdownload.famesmart.com/bison-2.5.1.tar.gz && \
 tar xvf bison-2.5.1.tar.gz && \
 cd bison-2.5.1 && \
 ./configure --prefix=/usr && \
@@ -255,7 +250,7 @@ make && \
 make install && \
 
 cd /fame && \
-wget http://sourceforge.net/projects/boost/files/boost/1.53.0/boost_1_53_0.tar.gz && \
+wget http://develdownload.famesmart.com/boost_1_53_0.tar.gz && \
 tar xvf boost_1_53_0.tar.gz && \
 cd boost_1_53_0 && \
 ./bootstrap.sh && \
