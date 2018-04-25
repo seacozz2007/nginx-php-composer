@@ -154,7 +154,7 @@ yum install libass-devel faac-devel fdk-acc-devel gsm-devel openjpeg-devel openj
 yum install zlib-devel bzip2-devel openssl-devel ncurses-devel sqlite-devel readline-devel tk-devel gdbm-devel db4-devel libpcap-devel xz-devel -y && \
 
 cd /fame && \
-wget http://www.tortall.net/projects/yasm/releases/yasm-1.3.0.tar.gz
+wget http://www.tortall.net/projects/yasm/releases/yasm-1.3.0.tar.gz && \
 tar xvf yasm-1.3.0.tar.gz && \
 cd yasm-1.3.0 && \
 ./configure && \
@@ -163,7 +163,7 @@ make install && \
 
 
 cd /fame && \
-wget http://jaist.dl.sourceforge.net/project/lame/lame/3.99/lame-3.99.5.tar.gz  
+wget http://jaist.dl.sourceforge.net/project/lame/lame/3.99/lame-3.99.5.tar.gz   && \
 tar xvf lame-3.99.5.tar.gz && \
 cd lame-3.99.5 && \
 ./configure && \
