@@ -217,7 +217,7 @@ wget http://develdownload.famesmart.com/3.1.0.zip && \
  unzip 3.1.0.zip && \
 cd opencv-3.1.0/ && \
 wget http://develdownload.famesmart.com/ippicv_linux_20151201.tgz && \
-mkdir -p 3rdparty/ippicv/downloads/linux-808b791a6eac9ed78d32a7666804320e/
+mkdir -p 3rdparty/ippicv/downloads/linux-808b791a6eac9ed78d32a7666804320e/ && \
 cp ippicv_linux_20151201.tgz 3rdparty/ippicv/downloads/linux-808b791a6eac9ed78d32a7666804320e/ && \
 mkdir build && \
 cd build && \
