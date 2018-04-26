@@ -144,12 +144,7 @@ yum install wget -y && \
 yum groupinstall "Development Tools" -y && \
 
 #install ffmpeg
-
-
-rpm --import http://li.nux.ro/download/nux/RPM-GPG-KEY-nux.ro && \
-rpm -Uvh http://li.nux.ro/download/nux/dextop/el7/x86_64/nux-dextop-release-0-5.el7.nux.noarch.rpm && \
-
-prm -ivh http://springdale.math.ias.edu/data/puias/7/x86_64/os/Addons/Packages/libass-0.13.4-1.sdl7.x86_64.rpm && \
+rpm -ivh http://springdale.math.ias.edu/data/puias/7/x86_64/os/Addons/Packages/libass-0.13.4-1.sdl7.x86_64.rpm && \
 yum install ffmpeg ffmpeg-devel -y && \
 #install opencv3
 
