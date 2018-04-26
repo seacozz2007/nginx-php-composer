@@ -145,12 +145,49 @@ yum groupinstall "Development Tools" -y && \
 
 #install ffmpeg
 
+yum install libass-devel faac-devel fdk-acc-devel gsm-devel openjpeg-devel openjpeg2-devel opus-devel libpulseaudio-devel soxr-devel speex-devel x265-devel  libtheora-devel  libvorbis-devel  xvidcore-devel fdk-aac-devel opencore-amr-devel -y && \
+yum install zlib-devel bzip2-devel openssl-devel ncurses-devel sqlite-devel readline-devel tk-devel gdbm-devel db4-devel libpcap-devel xz-devel -y && \
 
-rpm --import http://li.nux.ro/download/nux/RPM-GPG-KEY-nux.ro && \
-rpm -Uvh http://li.nux.ro/download/nux/dextop/el7/x86_64/nux-dextop-release-0-5.el7.nux.noarch.rpm && \
 
-prm -ivh http://springdale.math.ias.edu/data/puias/7/x86_64/os/Addons/Packages/libass-0.13.4-1.sdl7.x86_64.rpm && \
-yum install ffmpeg ffmpeg-devel -y && \
+
+cd /fame && \
+wget http://develdownload.famesmart.com/yasm-1.3.0.tar.gz && \
+tar xvf yasm-1.3.0.tar.gz && \
+cd yasm-1.3.0 && \
+./configure && \
+make && \
+make install && \
+
+
+cd /fame && \
+wget http://develdownload.famesmart.com/lame-3.99.5.tar.gz   && \
+tar xvf lame-3.99.5.tar.gz && \
+cd lame-3.99.5 && \
+./configure && \
+make && \
+make install && \
+
+
+cd /fame && \
+wget http://develdownload.famesmart.com/libvpx-1.7.0.tar.gz && \
+tar -zxvf libvpx-1.7.0.tar.gz && \
+cd libvpx-1.7.0 && \
+./configure --enable-shared --as=yasm --prefix=/usr && \
+make && \
+make install && \
+
+
+cd /fame && \
+wget http://develdownload.famesmart.com/ffmpeg-4.0.tar.gz && \
+tar -zxvf ffmpeg-4.0.tar.gz && \
+cd ffmpeg-4.0 && \
+
+./configure --prefix=/usr --enable-version3 --enable-libvpx --enable-libfdk-aac --enable-libvorbis --enable-libx264 --enable-libx265 --enable-libxvid --enable-gpl --enable-postproc --enable-nonfree --enable-avfilter --enable-pthreads --enable-libtheora --enable-libopencore-amrnb --enable-libopencore-amrwb --enable-shared --enable-libspeex --enable-libsoxr --enable-libass  --enable-libgsm --enable-libopenjpeg --enable-pthreads --enable-bzlib  && \
+
+make && \
+make install && \
+ldconfig && \
+
 #install opencv3
 
 
