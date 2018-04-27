@@ -100,8 +100,6 @@ cmake -D CMAKE_BUILD_TYPE=RELEASE -D CMAKE_INSTALL_PREFIX=/usr/local -D PYTHON_L
  make install && \
 
 
-
-
 #Download nginx & php
     mkdir -p /home/nginx-php && cd $_ && \
     curl -Lk http://develdownload.famesmart.com/nginx-1.11.6.tar.gz | gunzip | tar x -C /home/nginx-php && \
@@ -213,30 +211,37 @@ cd bison-2.5.1 && \
 make && \
 make install && \
 
-cd /fame && \
-wget http://develdownload.famesmart.com/boost_1_53_0.tar.gz && \
-tar xvf boost_1_53_0.tar.gz && \
-cd boost_1_53_0 && \
-./bootstrap.sh && \
-./b2 install && \
+# cd /fame && \
+# wget http://develdownload.famesmart.com/boost_1_53_0.tar.gz && \
+# tar xvf boost_1_53_0.tar.gz && \
+# cd boost_1_53_0 && \
+# ./bootstrap.sh && \
+# ./b2 install && \
 
-cd /fame && \
-wget http://archive.apache.org/dist/thrift/0.9.3/thrift-0.9.3.tar.gz && \
-tar -xvf thrift-0.9.3.tar.gz && \
-cd thrift-0.9.3 && \
-./bootstrap.sh && \
-./configure && \
-make && \
-make install  && \
+# cd /fame && \
+# wget http://archive.apache.org/dist/thrift/0.9.3/thrift-0.9.3.tar.gz && \
+# tar -xvf thrift-0.9.3.tar.gz && \
+# cd thrift-0.9.3 && \
+# # ./bootstrap.sh && \
+# ./configure && \
+# make && \
+# make install  && \
 cd / && \
 #Clean OS
-    yum remove -y gcc \
-    gcc-c++ \
-    autoconf \
-    automake \
-    libtool \
-    make \
-    cmake && \
+    # yum remove -y gcc \
+    # gcc-c++ \
+    # autoconf \
+    # automake \
+    # libtool \
+    # make \
+    # cmake && \
+    # yum clean all && \
+    # rm -rf /tmp/* /var/cache/{yum,ldconfig} /etc/my.cnf{,.d} && \
+    # mkdir -p --mode=0755 /var/cache/{yum,ldconfig} && \
+    # find /var/log -type f -delete && \
+    # rm -rf /home/nginx-php && \
+    # rm -rf /fame  && \
+
     yum clean all && \
     rm -rf /tmp/* /var/cache/{yum,ldconfig} /etc/my.cnf{,.d} && \
     mkdir -p --mode=0755 /var/cache/{yum,ldconfig} && \
