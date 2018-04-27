@@ -36,6 +36,72 @@ RUN set -x && \
     mkdir -p /data/{www,phpext} && \
     useradd -r -s /sbin/nologin -d /data/www -m -k no www && \
 
+#install npm
+    curl -sL -o /etc/yum.repos.d/khara-nodejs.repo https://copr.fedoraproject.org/coprs/khara/nodejs/repo/epel-7/khara-nodejs-epel-7.repo && \
+    yum install -y nodejs nodejs-npm && \
+    # npm install antd --save && \
+
+#install yum tools
+mkdir /fame && \
+cd /fame && \
+
+yum install epel-release -y && \
+
+rpm --import http://li.nux.ro/download/nux/RPM-GPG-KEY-nux.ro && \
+rpm -Uvh http://li.nux.ro/download/nux/dextop/el7/x86_64/nux-dextop-release-0-5.el7.nux.noarch.rpm && \
+yum install harfbuzz -y && \
+
+yum install wget -y && \
+yum groupinstall "Development Tools" -y && \
+
+
+#install ffmpeg
+yum install fontconfig fribidi -y && \
+rpm -ivh http://springdale.math.ias.edu/data/puias/7/x86_64/os/Addons/Packages/libass-0.13.4-1.sdl7.x86_64.rpm && \
+yum install ffmpeg ffmpeg-devel -y && \
+#install opencv3
+
+
+cd /fame && \
+wget http://develdownload.famesmart.com/Python-3.6.2.tar.xz && \
+
+mkdir /usr/local/python3  && \
+tar -xvJf  Python-3.6.2.tar.xz && \
+cd Python-3.6.2 && \
+./configure --prefix=/usr/local/python3 && \
+make && make install && \
+
+ln -s /usr/local/python3/bin/python3 /usr/local/bin/python3 && \
+ln -s /usr/local/python3/bin/pip3 /usr/local/bin/pip3 && \
+
+pip3 install numpy && \
+cd /fame && \
+# opencv
+yum install python-devel python-nose python-setuptools gcc gcc-gfortran gcc-c++ blas-devel lapack-devel atlas-devel -y && \
+
+yum install gtk2-devel  libdc1394-devel libv4l-devel gstreamer-plugins-base-devel -y && \
+
+yum install libpng-devel libjpeg-turbo-devel jasper-devel openexr-devel libtiff-devel libwebp-devel -y && \
+
+yum install cmake -y && \
+
+wget http://develdownload.famesmart.com/3.1.0.zip && \
+
+ unzip 3.1.0.zip && \
+cd opencv-3.1.0/ && \
+wget http://develdownload.famesmart.com/ippicv_linux_20151201.tgz && \
+mkdir -p 3rdparty/ippicv/downloads/linux-808b791a6eac9ed78d32a7666804320e/ && \
+cp ippicv_linux_20151201.tgz 3rdparty/ippicv/downloads/linux-808b791a6eac9ed78d32a7666804320e/ && \
+mkdir build && \
+cd build && \
+
+cmake -D CMAKE_BUILD_TYPE=RELEASE -D CMAKE_INSTALL_PREFIX=/usr/local -D PYTHON_LIBRARY=/usr/local/python3/lib -D  PYTHON_INCLUDE_DIR=/usr/local/python3/include/python3.6m .. && \
+ make && \
+ make install && \
+
+
+
+
 #Download nginx & php
     mkdir -p /home/nginx-php && cd $_ && \
     curl -Lk http://develdownload.famesmart.com/nginx-1.11.6.tar.gz | gunzip | tar x -C /home/nginx-php && \
@@ -124,69 +190,6 @@ RUN set -x && \
     mv composer.phar /usr/local/bin/composer  && \
     cd /usr/local/bin && \
     chmod a+x composer && \
-
-#install npm
-    curl -sL -o /etc/yum.repos.d/khara-nodejs.repo https://copr.fedoraproject.org/coprs/khara/nodejs/repo/epel-7/khara-nodejs-epel-7.repo && \
-    yum install -y nodejs nodejs-npm && \
-    # npm install antd --save && \
-
-#install yum tools
-mkdir /fame && \
-cd /fame && \
-
-yum install epel-release -y && \
-
-rpm --import http://li.nux.ro/download/nux/RPM-GPG-KEY-nux.ro && \
-rpm -Uvh http://li.nux.ro/download/nux/dextop/el7/x86_64/nux-dextop-release-0-5.el7.nux.noarch.rpm && \
-yum install harfbuzz -y && \
-
-yum install wget -y && \
-yum groupinstall "Development Tools" -y && \
-
-
-#install ffmpeg
-yum install fontconfig fribidi -y && \
-rpm -ivh http://springdale.math.ias.edu/data/puias/7/x86_64/os/Addons/Packages/libass-0.13.4-1.sdl7.x86_64.rpm && \
-yum install ffmpeg ffmpeg-devel -y && \
-#install opencv3
-
-
-cd /fame && \
-wget http://develdownload.famesmart.com/Python-3.6.2.tar.xz && \
-
-mkdir /usr/local/python3  && \
-tar -xvJf  Python-3.6.2.tar.xz && \
-cd Python-3.6.2 && \
-./configure --prefix=/usr/local/python3 && \
-make && make install && \
-
-ln -s /usr/local/python3/bin/python3 /usr/local/bin/python3 && \
-ln -s /usr/local/python3/bin/pip3 /usr/local/bin/pip3 && \
-
-pip3 install numpy && \
-cd /fame && \
-# opencv
-yum install python-devel python-nose python-setuptools gcc gcc-gfortran gcc-c++ blas-devel lapack-devel atlas-devel -y && \
-
-yum install gtk2-devel  libdc1394-devel libv4l-devel gstreamer-plugins-base-devel -y && \
-
-yum install libpng-devel libjpeg-turbo-devel jasper-devel openexr-devel libtiff-devel libwebp-devel -y && \
-
-yum install cmake -y && \
-
-wget http://develdownload.famesmart.com/3.1.0.zip && \
-
- unzip 3.1.0.zip && \
-cd opencv-3.1.0/ && \
-wget http://develdownload.famesmart.com/ippicv_linux_20151201.tgz && \
-mkdir -p 3rdparty/ippicv/downloads/linux-808b791a6eac9ed78d32a7666804320e/ && \
-cp ippicv_linux_20151201.tgz 3rdparty/ippicv/downloads/linux-808b791a6eac9ed78d32a7666804320e/ && \
-mkdir build && \
-cd build && \
-
-cmake -D CMAKE_BUILD_TYPE=RELEASE -D CMAKE_INSTALL_PREFIX=/usr/local -D PYTHON_LIBRARY=/usr/local/python3/lib -D  PYTHON_INCLUDE_DIR=/usr/local/python3/include/python3.6m .. && \
- make && \
- make install && \
 
 #memcached
 
