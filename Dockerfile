@@ -143,7 +143,9 @@ yum install harfbuzz -y && \
 yum install wget -y && \
 yum groupinstall "Development Tools" -y && \
 
+
 #install ffmpeg
+yum install fontconfig fribidi -y && \
 rpm -ivh http://springdale.math.ias.edu/data/puias/7/x86_64/os/Addons/Packages/libass-0.13.4-1.sdl7.x86_64.rpm && \
 yum install ffmpeg ffmpeg-devel -y && \
 #install opencv3
