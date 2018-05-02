@@ -211,7 +211,7 @@ cd bison-2.5.1 && \
 make && \
 make install && \
 
-yum install bzip2 bzip2-devel bzip2-libs python-devel -y && \
+yum install bzip2 bzip2-devel bzip2-libs python-devel libevent-devel -y && \
 
 cd /fame && \
 wget http://develdownload.famesmart.com/boost_1_53_0.tar.gz && \
@@ -224,11 +224,10 @@ cd boost_1_53_0 && \
 cd /fame && \
 wget http://archive.apache.org/dist/thrift/0.9.3/thrift-0.9.3.tar.gz && \
 tar -xvf thrift-0.9.3.tar.gz && \
-# cd thrift-0.9.3 && \
-# # ./bootstrap.sh && \
-# ./configure && \
-# make && \
-# make install  && \
+cd thrift-0.9.3 && \
+./configure --with-nodejs=no && \
+make && \
+make install  && \
 
 # cd / && \
 
@@ -238,26 +237,19 @@ tar -xvf ffmpeg.tar  && \
 rm -rf ffmpeg.tar  && \
 
 # Clean OS
-# yum remove -y gcc \
-# gcc-c++ \
-# autoconf \
-# automake \
-# libtool \
-# make \
-# cmake && \
+yum remove -y gcc \
+gcc-c++ \
+autoconf \
+automake \
+libtool \
+make \
+cmake && \
 yum clean all && \
 rm -rf /tmp/* /var/cache/{yum,ldconfig} /etc/my.cnf{,.d} && \
 mkdir -p --mode=0755 /var/cache/{yum,ldconfig} && \
 find /var/log -type f -delete && \
 rm -rf /home/nginx-php && \
 rm -rf /fame  && \
-
-    # yum clean all && \
-    # rm -rf /tmp/* /var/cache/{yum,ldconfig} /etc/my.cnf{,.d} && \
-    # mkdir -p --mode=0755 /var/cache/{yum,ldconfig} && \
-    # find /var/log -type f -delete && \
-    # rm -rf /home/nginx-php && \
-    # rm -rf /fame  && \
 
 #Change Mod from webdir
     chown -R www:www /data/www
