@@ -224,11 +224,11 @@ cd boost_1_53_0 && \
 cd /fame && \
 wget http://archive.apache.org/dist/thrift/0.9.3/thrift-0.9.3.tar.gz && \
 tar -xvf thrift-0.9.3.tar.gz && \
-cd thrift-0.9.3 && \
-# ./bootstrap.sh && \
-./configure && \
-make && \
-make install  && \
+# cd thrift-0.9.3 && \
+# # ./bootstrap.sh && \
+# ./configure && \
+# make && \
+# make install  && \
 
 # cd / && \
 
@@ -238,13 +238,13 @@ tar -xvf ffmpeg.tar  && \
 rm -rf ffmpeg.tar  && \
 
 # Clean OS
-yum remove -y gcc \
-gcc-c++ \
-autoconf \
-automake \
-libtool \
-make \
-cmake && \
+# yum remove -y gcc \
+# gcc-c++ \
+# autoconf \
+# automake \
+# libtool \
+# make \
+# cmake && \
 yum clean all && \
 rm -rf /tmp/* /var/cache/{yum,ldconfig} /etc/my.cnf{,.d} && \
 mkdir -p --mode=0755 /var/cache/{yum,ldconfig} && \
