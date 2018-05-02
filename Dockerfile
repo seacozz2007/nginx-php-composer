@@ -120,78 +120,78 @@ cmake -D CMAKE_BUILD_TYPE=RELEASE -D CMAKE_INSTALL_PREFIX=/usr/local -D PYTHON_L
     make && make install && \
 
 #Make install php
-    cd /home/nginx-php/php-7.1.0 && \
-    ./configure --prefix=/usr/local/php \
-    --with-config-file-path=/usr/local/php/etc \
-    --with-config-file-scan-dir=/usr/local/php/etc/php.d \
-    --with-fpm-user=www \
-    --with-fpm-group=www \
-    --with-mcrypt=/usr/include \
-    --with-mysqli \
-    --with-pdo-mysql \
-    --with-openssl \
-    --with-gd \
-    --with-iconv \
-    --with-zlib \
-    --with-gettext \
-    --with-curl \
-    --with-png-dir \
-    --with-jpeg-dir \
-    --with-freetype-dir \
-    --with-xmlrpc \
-    --with-mhash \
-    --enable-fpm \
-    --enable-xml \
-    --enable-shmop \
-    --enable-sysvsem \
-    --enable-inline-optimization \
-    --enable-mbregex \
-    --enable-mbstring \
-    --enable-ftp \
-    --enable-gd-native-ttf \
-    --enable-mysqlnd \
-    --enable-pcntl \
-    --enable-sockets \
-    --enable-zip \
-    --enable-soap \
-    --enable-session \
-    --enable-opcache \
-    --enable-bcmath \
-    --enable-exif \
-    --enable-fileinfo \
-    --disable-rpath \
-    --enable-ipv6 \
-    --disable-debug \
-    --without-pear && \
-    make && make install && \
+cd /home/nginx-php/php-7.1.0 && \
+./configure --prefix=/usr/local/php \
+--with-config-file-path=/usr/local/php/etc \
+--with-config-file-scan-dir=/usr/local/php/etc/php.d \
+--with-fpm-user=www \
+--with-fpm-group=www \
+--with-mcrypt=/usr/include \
+--with-mysqli \
+--with-pdo-mysql \
+--with-openssl \
+--with-gd \
+--with-iconv \
+--with-zlib \
+--with-gettext \
+--with-curl \
+--with-png-dir \
+--with-jpeg-dir \
+--with-freetype-dir \
+--with-xmlrpc \
+--with-mhash \
+--enable-fpm \
+--enable-xml \
+--enable-shmop \
+--enable-sysvsem \
+--enable-inline-optimization \
+--enable-mbregex \
+--enable-mbstring \
+--enable-ftp \
+--enable-gd-native-ttf \
+--enable-mysqlnd \
+--enable-pcntl \
+--enable-sockets \
+--enable-zip \
+--enable-soap \
+--enable-session \
+--enable-opcache \
+--enable-bcmath \
+--enable-exif \
+--enable-fileinfo \
+--disable-rpath \
+--enable-ipv6 \
+--disable-debug \
+--without-pear && \
+make && make install && \
 
 #Install php-fpm
-    cd /home/nginx-php/php-7.1.0 && \
-    cp php.ini-production /usr/local/php/etc/php.ini && \
-    cp /usr/local/php/etc/php-fpm.conf.default /usr/local/php/etc/php-fpm.conf && \
-    cp /usr/local/php/etc/php-fpm.d/www.conf.default /usr/local/php/etc/php-fpm.d/www.conf && \
+cd /home/nginx-php/php-7.1.0 && \
+cp php.ini-production /usr/local/php/etc/php.ini && \
+cp /usr/local/php/etc/php-fpm.conf.default /usr/local/php/etc/php-fpm.conf && \
+cp /usr/local/php/etc/php-fpm.d/www.conf.default /usr/local/php/etc/php-fpm.d/www.conf && \
 
 #Install supervisor
-    easy_install supervisor && \
-    mkdir -p /var/{log/supervisor,run/{sshd,supervisord}} && \
+easy_install supervisor && \
+mkdir -p /var/{log/supervisor,run/{sshd,supervisord}} && \
 
 #install composer
-    #export PATH=$PATH:/usr/local/php/bin && \
-    ln -s /usr/local/php/bin/* /usr/local/bin/ && \
-    cd /usr/local && \
-    mkdir composer && \
-    cd composer && \
-    php -r "copy('http://develdownload.famesmart.com/installer', 'composer-setup.php');" && \
-    chmod +x composer-setup.php && \
-    php composer-setup.php && \
-    php -r "unlink('composer-setup.php');" && \
-    mv composer.phar /usr/local/bin/composer  && \
-    cd /usr/local/bin && \
-    chmod a+x composer && \
+#export PATH=$PATH:/usr/local/php/bin && \
+ln -s /usr/local/php/bin/* /usr/local/bin/ && \
+cd /usr/local && \
+mkdir composer && \
+cd composer && \
+php -r "copy('http://develdownload.famesmart.com/installer', 'composer-setup.php');" && \
+chmod +x composer-setup.php && \
+php composer-setup.php && \
+php -r "unlink('composer-setup.php');" && \
+mv composer.phar /usr/local/bin/composer  && \
+cd /usr/local/bin && \
+chmod a+x composer && \
 
 #memcached
-
-yum install libmemcached libmemcached-devel zlib zlib-devel -y && \
+cd /fame && \
+yum install memcached libmemcached libmemcached-devel zlib zlib-devel -y && \
 
 git clone https://github.com/php-memcached-dev/php-memcached memcached && \
 cd memcached/ && \
@@ -211,43 +211,53 @@ cd bison-2.5.1 && \
 make && \
 make install && \
 
-# cd /fame && \
-# wget http://develdownload.famesmart.com/boost_1_53_0.tar.gz && \
-# tar xvf boost_1_53_0.tar.gz && \
-# cd boost_1_53_0 && \
-# ./bootstrap.sh && \
-# ./b2 install && \
+yum install bzip2 bzip2-devel bzip2-libs python-devel -y && \
 
-# cd /fame && \
-# wget http://archive.apache.org/dist/thrift/0.9.3/thrift-0.9.3.tar.gz && \
-# tar -xvf thrift-0.9.3.tar.gz && \
-# cd thrift-0.9.3 && \
-# # ./bootstrap.sh && \
-# ./configure && \
-# make && \
-# make install  && \
-cd / && \
-#Clean OS
-    # yum remove -y gcc \
-    # gcc-c++ \
-    # autoconf \
-    # automake \
-    # libtool \
-    # make \
-    # cmake && \
+cd /fame && \
+wget http://develdownload.famesmart.com/boost_1_53_0.tar.gz && \
+tar xvf boost_1_53_0.tar.gz && \
+cd boost_1_53_0 && \
+./bootstrap.sh && \
+./b2 && \
+./b2 install && \
+
+cd /fame && \
+wget http://archive.apache.org/dist/thrift/0.9.3/thrift-0.9.3.tar.gz && \
+tar -xvf thrift-0.9.3.tar.gz && \
+cd thrift-0.9.3 && \
+# ./bootstrap.sh && \
+./configure && \
+make && \
+make install  && \
+
+# cd / && \
+
+cd /  && \
+wget http://develdownload.famesmart.com/ffmpeg.tar  && \
+tar -xvf ffmpeg.tar  && \
+rm -rf ffmpeg.tar  && \
+
+# Clean OS
+yum remove -y gcc \
+gcc-c++ \
+autoconf \
+automake \
+libtool \
+make \
+cmake && \
+yum clean all && \
+rm -rf /tmp/* /var/cache/{yum,ldconfig} /etc/my.cnf{,.d} && \
+mkdir -p --mode=0755 /var/cache/{yum,ldconfig} && \
+find /var/log -type f -delete && \
+rm -rf /home/nginx-php && \
+rm -rf /fame  && \
+
     # yum clean all && \
     # rm -rf /tmp/* /var/cache/{yum,ldconfig} /etc/my.cnf{,.d} && \
     # mkdir -p --mode=0755 /var/cache/{yum,ldconfig} && \
     # find /var/log -type f -delete && \
     # rm -rf /home/nginx-php && \
     # rm -rf /fame  && \
-
-    yum clean all && \
-    rm -rf /tmp/* /var/cache/{yum,ldconfig} /etc/my.cnf{,.d} && \
-    mkdir -p --mode=0755 /var/cache/{yum,ldconfig} && \
-    find /var/log -type f -delete && \
-    rm -rf /home/nginx-php && \
-    rm -rf /fame  && \
 
 #Change Mod from webdir
     chown -R www:www /data/www
